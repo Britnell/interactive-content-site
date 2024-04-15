@@ -8,10 +8,6 @@ type Blok = {
 
 type SBComponent = (props: { blok: Blok }) => JSX.Element;
 
-const storyblok = new StoryblokClient({
-  accessToken: "W1vLyxT5rQ15jBpANjnv0gtt",
-});
-
 export default function Home({
   story,
 }: {
@@ -37,6 +33,26 @@ export default function Home({
     </>
   );
 }
+
+export const getStaticProps = async () => {
+  const storyblok = new StoryblokClient({
+    accessToken: "W1vLyxT5rQ15jBpANjnv0gtt",
+  });
+
+  const resp = await storyblok.get("cdn/stories/home", {
+    version: "draft",
+  });
+  const story = resp.data.story;
+
+  story.content?.body?.push({
+    component: "feature",
+    name: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!",
+  });
+  return {
+    props: { story },
+  };
+};
+
 function ComponentSwitcher({ blok }: { blok: Blok }) {
   let Comp: SBComponent = NA;
 
@@ -52,8 +68,8 @@ function ComponentSwitcher({ blok }: { blok: Blok }) {
 const Page: SBComponent = ({ blok }: { blok: Blok }) => {
   return (
     <div className="page">
-      {blok.body.map((b: Blok) => (
-        <ComponentSwitcher blok={b} />
+      {blok.body.map((b: Blok, i: number) => (
+        <ComponentSwitcher key={i} blok={b} />
       ))}
     </div>
   );
@@ -104,6 +120,7 @@ const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
       <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto ">
         {blok.columns.map((col: Blok, i: number) => (
           <div
+            key={i}
             className={
               " border-4 rounded-xl " +
               (count === i ? " border-red-500 " : " border-transparent")
@@ -121,30 +138,12 @@ const NA: SBComponent = ({ blok }) => {
   return <p>Component {blok.component} not found</p>;
 };
 
-export const getServerSideProps = async () => {
-  const resp = await storyblok.get("cdn/stories/home", {
-    version: "draft",
-  });
-
-  return {
-    props: {
-      story: resp.data.story,
-    },
-  };
-};
-
 const Other: SBComponent = () => {
   return (
     <div className="other">
       <p>
         Other component that is also bundled even though it is not used, because
         the page doesnt know which components will be needed
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla
-        necessitatibus, temporibus aut quas ut totam doloremque eum
-        voluptatibus, modi quaerat officiis? Illo nulla officiis non delectus?
-        Aut incidunt vel dolor?
       </p>
     </div>
   );

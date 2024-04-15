@@ -52,7 +52,7 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
         <span class=" text-4xl block underline pr-4 mb-4">TEASER</span>
         <div class="flex flex-col items-center">
           <button onClick$={() => (show.value = !show.value)}>
-            {show.value ? "reveal" : "hide"}
+            {show.value ? "hide" : "reveal"}
           </button>
           <div class={show.value ? "block" : "hidden"}>
             <span class=" text-6xl">{blok.headline}</span>
