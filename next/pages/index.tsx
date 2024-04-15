@@ -16,8 +16,6 @@ export default function Home({
     content: Blok;
   };
 }) {
-  console.log(story);
-
   return (
     <>
       <header className=" flex justify-between px-8 py-2">

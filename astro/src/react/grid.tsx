@@ -9,8 +9,6 @@ const Teaser = ({ children }: { children: React.ReactNode }) => {
     const children = ref.current?.firstElementChild?.children;
     if (!children) return;
     Array.from(children).forEach((el, i) => {
-      console.log(el);
-
       if (i === count) {
         el.classList.add("border-red-600");
         el.classList.remove("border-transparent");
