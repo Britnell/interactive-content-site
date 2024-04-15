@@ -13,6 +13,7 @@ const resp = await storyblok.get("cdn/stories/home", {
 const st = resp.data.story.content;
 st.body = st.body.map((bl: any) => {
   if (bl.component === "teaser") bl.component = "teaser-alpine";
+  if (bl.component === "grid") bl.component = "grid-alpine";
   return bl;
 });
 ---
