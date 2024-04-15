@@ -10,18 +10,28 @@
     <meta name="generator" content={Astro.generator} />
     <title>Astro</title>
   </head>
+  <style is:global>
+    body {
+      background: black;
+      color: white;
+    }
+  </style>
   <body>
-    <h1>Cms demo</h1>
-    <nav>
-      <ul>
-        {
-          "island,qwik".split(",").map((item) => (
-            <li>
-              <a href={`/${item}`}>{item}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <div class="x">
+      <header>
+        <h1>Cms demo</h1>
+      </header>
+      <nav>
+        <ul class="list-disc pl-6">
+          {
+            "island,qwik".split(",").map((item) => (
+              <li>
+                <a href={`/${item}`}>{item}</a>
+              </li>
+            ))
+          }
+        </ul>
+      </nav>
+    </div>
   </body>
 </html>

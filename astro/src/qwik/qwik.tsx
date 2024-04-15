@@ -9,7 +9,6 @@ type Blok = {
 
 export const Switcher = component$(({ blok }: { blok: Blok }) => {
   let Comp = NA;
-  console.log(blok.component, blok);
 
   if (blok.component === "page") Comp = Page;
   if (blok.component === "teaser") Comp = Teaser;
@@ -21,11 +20,24 @@ export const Switcher = component$(({ blok }: { blok: Blok }) => {
 
 const Page = component$(({ blok }: { blok: Blok }) => {
   return (
-    <div class="page">
-      {blok.body?.map((bl: Blok) => (
-        <Switcher blok={bl} />
-      ))}
-    </div>
+    <>
+      <header class="flex justify-between px-8 py-2">
+        <a href="#" class="text-2xl font-bold">
+          Qwik Demo
+        </a>
+        <a href="#" class="font-mono">
+          Profile
+        </a>
+      </header>
+      <main>
+        <div class="page">
+          {blok.body?.map((bl: Blok) => (
+            <Switcher blok={bl} />
+          ))}
+        </div>
+        <p>Qwik in astro</p>
+      </main>
+    </>
   );
 });
 
