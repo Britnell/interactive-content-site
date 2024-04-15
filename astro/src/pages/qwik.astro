@@ -1,17 +1,37 @@
 ---
-import { Example } from "../qwik/qwik";
+import { Switcher } from "../qwik/qwik";
+import StoryblokClient from "storyblok-js-client";
+
+const storyblok = new StoryblokClient({
+  accessToken: "W1vLyxT5rQ15jBpANjnv0gtt",
+});
+
+const resp = await storyblok.get("cdn/stories/home", {
+  version: "draft",
+});
 ---
 
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="generator" content={Astro.generator} />
-    <title>Astro</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Qwik Demo</title>
   </head>
+  <style is:global>
+    body {
+      background: black;
+      color: white;
+    }
+  </style>
   <body>
-    <h1>Qwik</h1>
-    <Example />
+    <header class="flex justify-between px-8 py-2">
+      <a href="#" class="text-2xl font-bold"> Qwik Demo</a>
+      <a href="#" class="font-mono"> Profile</a>
+    </header>
+    <main>
+      <Switcher blok={resp.data.story.content} />
+      <p>Qwik in astro</p>
+    </main>
   </body>
 </html>
