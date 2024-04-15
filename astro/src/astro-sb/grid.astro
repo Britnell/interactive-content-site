@@ -1,5 +1,6 @@
 ---
 import Switcher from "./switcher.astro";
+import RGrid from "../react/grid";
 
 type Blok = {
   component: string;
@@ -12,8 +13,11 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div
+<!-- <div
   class="px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto"
 >
   {blok.columns.map((bl: Blok) => <Switcher blok={bl} />)}
-</div>
+</div> -->
+<RGrid client:load>
+  {blok.columns.map((bl: Blok) => <Switcher blok={bl} />)}
+</RGrid>

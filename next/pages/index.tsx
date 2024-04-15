@@ -133,7 +133,7 @@ export const getServerSideProps = async () => {
   };
 };
 
-const Other: SBComponent = ({ blok }: { blok: Blok }) => {
+const Other: SBComponent = () => {
   return (
     <div className="other">
       <p>
