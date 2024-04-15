@@ -1,6 +1,6 @@
 /** @jsxImportSource @builder.io/qwik */
 
-import { component$, useSignal, Slot } from "@builder.io/qwik";
+import { component$, useSignal } from "@builder.io/qwik";
 
 type Blok = {
   component: string;
@@ -49,36 +49,6 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
   );
 });
 
-const TeaserTwo = component$(({ blok }: { blok: Blok }) => {
-  return (
-    <div class="teaser h-[50vh] flex justify-center ">
-      <h1 class=" mt-20 font-bold flex flex-col items-center">
-        <span class=" text-4xl block underline pr-4 mb-4">TEASER</span>
-        <Toggle>
-          <span class=" text-6xl">{blok.headline}</span>
-        </Toggle>
-      </h1>
-    </div>
-  );
-});
-
-const Toggle = component$(() => {
-  const show = useSignal(false);
-
-  return (
-    <>
-      <div class="flex flex-col items-center">
-        <button onClick$={() => (show.value = !show.value)}>
-          {show.value ? "reveal" : "hide"}
-        </button>
-        <div class={!show.value ? "block" : "hidden"}>
-          <Slot />
-        </div>
-      </div>
-    </>
-  );
-});
-
 const NA = component$(({ blok }: { blok: Blok }) => {
   return <p>Component {blok.component} not found</p>;
 });
@@ -95,9 +65,9 @@ const Grid = component$(({ blok }: { blok: Blok }) => {
 
 const Feature = component$(({ blok }: { blok: Blok }) => {
   return (
-    <div className="feature rounded-xl bg-white text-black p-6">
-      <h2 className=" text-2xl font-bold mb-2">Feature</h2>
-      <p className=" italic">{blok.name}</p>
+    <div class="feature rounded-xl bg-white text-black p-6">
+      <h2 class=" text-2xl font-bold mb-2">Feature</h2>
+      <p class=" italic">{blok.name}</p>
     </div>
   );
 });
