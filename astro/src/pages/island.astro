@@ -26,12 +26,12 @@ const resp = await storyblok.get("cdn/stories/home", {
   </style>
   <body>
     <header class="flex justify-between px-8 py-2">
-      <a href="#" class="text-2xl font-bold"> Astro Demo</a>
+      <a href="/" class="text-2xl font-bold"> Astro Demo</a>
       <a href="#" class="font-mono"> Profile</a>
     </header>
     <main>
       <Switcher blok={resp.data.story.content} />
-      <p>This is the astro demo - with a react island</p>
+      <p>This is using Astro components w React islands</p>
     </main>
   </body>
 </html>

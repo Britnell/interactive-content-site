@@ -24,7 +24,7 @@ const Page = component$(({ blok }: { blok: Blok }) => {
   return (
     <>
       <header class="flex justify-between px-8 py-2">
-        <a href="#" class="text-2xl font-bold">
+        <a href="/" class="text-2xl font-bold">
           Qwik Demo
         </a>
         <a href="#" class="font-mono">
