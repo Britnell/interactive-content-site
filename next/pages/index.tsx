@@ -1,5 +1,6 @@
 import { useState } from "react";
 import StoryblokClient from "storyblok-js-client";
+import "../styles/globals.css";
 
 type Blok = {
   component: string;
