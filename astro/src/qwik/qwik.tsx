@@ -19,6 +19,8 @@ export const Switcher = component$(({ blok }: { blok: Blok }) => {
 });
 
 const Page = component$(({ blok }: { blok: Blok }) => {
+  console.log(" RENDERING PAGE - I ONLY HAPPEN ON SERVER");
+
   return (
     <>
       <header class="flex justify-between px-8 py-2">

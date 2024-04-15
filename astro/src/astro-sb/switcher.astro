@@ -2,6 +2,7 @@
 import Page from "./page.astro";
 import Grid from "./grid.astro";
 import Teaser from "./teaser.astro";
+import TeaserAlpine from "./teaser-alpine.astro";
 import Feature from "./feature.astro";
 import NA from "./na.astro";
 
@@ -19,6 +20,7 @@ let Comp = NA;
 if (blok.component === "page") Comp = Page;
 if (blok.component === "grid") Comp = Grid;
 if (blok.component === "teaser") Comp = Teaser;
+if (blok.component === "teaser-alpine") Comp = TeaserAlpine;
 if (blok.component === "feature") Comp = Feature;
 ---
 
