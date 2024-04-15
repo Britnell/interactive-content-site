@@ -47,7 +47,7 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
   const show = useSignal(false);
 
   return (
-    <div class="teaser h-[50vh] flex justify-center ">
+    <div class="teaser ">
       <h1 class=" mt-20 font-bold flex flex-col items-center">
         <span class=" text-4xl block underline pr-4 mb-4">TEASER</span>
         <div class="flex flex-col items-center">
@@ -55,7 +55,9 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
             {show.value ? "hide" : "reveal"}
           </button>
           <div class={show.value ? "block" : "hidden"}>
-            <span class=" text-6xl">{blok.headline}</span>
+            <span class=" text-xs font-normal leading-none">
+              {blok.headline}
+            </span>
           </div>
         </div>
       </h1>

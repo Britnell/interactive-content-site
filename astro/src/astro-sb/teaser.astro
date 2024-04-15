@@ -11,11 +11,11 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div class="teaser h-[50vh] flex justify-center">
+<div class="teaser">
   <h1 class="mt-20 font-bold flex flex-col items-center">
     <span class="text-4xl block underline pr-4 mb-4">TEASER</span>
     <RTeaser client:idle>
-      <span class="text-6xl">{blok.headline}</span>
+      <span class="text-xs font-normal leading-none">{blok.headline}</span>
     </RTeaser>
   </h1>
 </div>

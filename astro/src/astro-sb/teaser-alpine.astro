@@ -9,7 +9,7 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div class="teaser h-[50vh] flex justify-center" x-data="{show:false}">
+<div class="teaser" x-data="{show:false}">
   <h1 class="mt-20 font-bold flex flex-col items-center">
     <span class="text-4xl block underline pr-4 mb-4">TEASER</span>
     <div class="flex flex-col items-center">
@@ -17,7 +17,7 @@ const { blok } = Astro.props;
         <span x-text="show ? 'hide' : 'reveal'"></span>
       </button>
       <div :class="'hidden' + (show ? '_ block' : ' hidden') ">
-        <span class="text-6xl">{blok.headline}</span>
+        <span class="text-xs font-normal leading-none">{blok.headline}</span>
       </div>
     </div>
   </h1>
