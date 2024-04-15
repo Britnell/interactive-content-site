@@ -16,7 +16,7 @@ const { blok } = Astro.props;
       <button @click="show = !show">
         <span x-text="show ? 'hide' : 'reveal'"></span>
       </button>
-      <div :class="'hidden' + (show ? '_ block' : ' hidden') ">
+      <div class="hidden" :style="`display: ${show ? 'block' : 'none'}`">
         <span class="text-xs font-normal leading-none">{blok.headline}</span>
       </div>
     </div>
