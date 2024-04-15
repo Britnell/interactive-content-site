@@ -2,16 +2,15 @@ import React from "react";
 
 const Teaser = ({ children }: { children: React.ReactNode }) => {
   const [count, setCount] = React.useState(0);
-
   const ref = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    if (!ref.current) return;
-    const children = ref.current.firstElementChild?.children;
+    // i know this is un-react-like, but the children are rendered by astro inside an <astro-slot>
+    const children = ref.current?.firstElementChild?.children;
     if (!children) return;
     Array.from(children).forEach((el, i) => {
-      if (i === count) el.classList.add("selected");
-      else el.classList.remove("selected");
+      if (i === count) el.classList.add("border-red-600");
+      else el.classList.remove("border-red-600");
     });
   }, [count]);
 
