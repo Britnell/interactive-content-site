@@ -1,0 +1,17 @@
+---
+import Switcher from "../astro-sb/switcher.astro";
+
+type Blok = {
+  component: string;
+  [field: string]: any;
+};
+interface Props {
+  blok: Blok;
+}
+
+const { blok } = Astro.props;
+---
+
+<div class="page">
+  {blok.body.map((bl: Blok) => <Switcher blok={bl} />)}
+</div>

@@ -1,0 +1,16 @@
+---
+// import Switcher from "./switcher.astro";
+
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<div>
+  <p class="font-mono">Component {blok.component} not found</p>
+</div>

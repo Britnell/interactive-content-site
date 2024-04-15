@@ -1,3 +1,4 @@
+import { useState } from "react";
 import StoryblokClient from "storyblok-js-client";
 
 type Blok = {
@@ -24,7 +25,7 @@ export default function Home({
     <>
       <header className=" flex justify-between px-8 py-2">
         <a href="#" className="text-2xl font-bold">
-          App
+          Next Pages
         </a>
         <a href="#" className=" font-mono">
           Profile
@@ -59,11 +60,19 @@ const Page: SBComponent = ({ blok }: { blok: Blok }) => {
 };
 
 const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
+  const [show, setShow] = useState(false);
   return (
-    <div className="teaser h-[50vh] grid place-items-center">
-      <h1 className="  font-bold">
+    <div className="teaser h-[50vh] flex justify-center ">
+      <h1 className=" mt-20 font-bold flex flex-col items-center">
         <span className=" text-4xl block underline pr-4 mb-4">TEASER</span>
-        <span className=" text-6xl">{blok.headline}</span>
+        {show ? (
+          <>
+            <button onClick={() => setShow(false)}>hide</button>
+            <span className=" text-6xl">{blok.headline}</span>
+          </>
+        ) : (
+          <button onClick={() => setShow(true)}>reveal</button>
+        )}
       </h1>
     </div>
   );

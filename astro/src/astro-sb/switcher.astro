@@ -1,0 +1,27 @@
+---
+import Page from "./page.astro";
+import Grid from "./grid.astro";
+import Teaser from "./teaser.astro";
+import Feature from "./feature.astro";
+import NA from "./na.astro";
+
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
+
+const { blok } = Astro.props;
+
+let Comp = NA;
+
+if (blok.component === "page") Comp = Page;
+if (blok.component === "grid") Comp = Grid;
+if (blok.component === "teaser") Comp = Teaser;
+if (blok.component === "feature") Comp = Feature;
+---
+
+<span>
+  <Comp blok={blok} />
+</span>

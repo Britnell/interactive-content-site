@@ -1,5 +1,5 @@
 ---
-
+import { Example } from "../qwik/qwik";
 ---
 
 <html lang="en">
@@ -11,17 +11,7 @@
     <title>Astro</title>
   </head>
   <body>
-    <h1>Cms demo</h1>
-    <nav>
-      <ul>
-        {
-          "astro,x".split(",").map((item) => (
-            <li>
-              <a href={`/${item}`}>{item}</a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
+    <h1>Qwik</h1>
+    <Example />
   </body>
 </html>
