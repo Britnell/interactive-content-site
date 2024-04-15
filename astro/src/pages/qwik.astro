@@ -23,6 +23,18 @@ const resp = await storyblok.get("cdn/stories/home", {
       background: black;
       color: white;
     }
+    .carousel > * {
+      border: 4px solid transparent;
+    }
+    .red-child-0 > *:nth-child(1) {
+      border-color: red;
+    }
+    .red-child-1 > *:nth-child(2) {
+      border-color: red;
+    }
+    .red-child-2 > *:nth-child(3) {
+      border-color: red;
+    }
   </style>
   <body>
     <Switcher blok={resp.data.story.content} />

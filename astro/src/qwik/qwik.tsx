@@ -68,12 +68,37 @@ const NA = component$(({ blok }: { blok: Blok }) => {
 });
 
 const Grid = component$(({ blok }: { blok: Blok }) => {
+  const count = useSignal(0);
+
   return (
-    <div class=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto ">
-      {blok.columns.map((col: Blok) => (
-        <Switcher blok={col} />
-      ))}
-    </div>
+    <>
+      <div class=" px-6 max-w-[1400px] mx-auto mb-8 ">
+        <span>Carousel item : {count.value}</span>
+        <button
+          class=" ml-8 bg-white text-black rounded-md px-2 py-1"
+          onClick$={() => (count.value = (count.value + 1) % 3)}
+        >
+          Next
+        </button>
+      </div>
+      <div
+        class={
+          " px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto carousel " +
+          `red-child-${count.value}`
+        }
+      >
+        {/* re-render boundary is here, we have to use classes on the parent, instead of dynamically applying styles to the array of children (as this requires the component jsx code) */}
+        {blok.columns.map((col: Blok) => (
+          <div
+            style="--x: 1"
+            class={" border-4 rounded-xl border-transparent "}
+            // class={" border-4 rounded-xl border-transparent "+ (count.value===i ? " border-red-500 " : " border-transparent")}
+          >
+            <Switcher blok={col} />
+          </div>
+        ))}
+      </div>
+    </>
   );
 });
 
