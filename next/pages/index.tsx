@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import StoryblokClient from "storyblok-js-client";
 import "../styles/globals.css";
 
@@ -8,30 +8,6 @@ type Blok = {
 };
 
 type SBComponent = (props: { blok: Blok }) => JSX.Element;
-
-export default function Home({
-  story,
-}: {
-  story: {
-    content: Blok;
-  };
-}) {
-  return (
-    <>
-      <header className=" flex justify-between px-8 py-2">
-        <a href="#" className="text-2xl font-bold">
-          Next Pages
-        </a>
-        <a href="#" className=" font-mono">
-          Profile
-        </a>
-      </header>
-      <main>
-        <ComponentSwitcher blok={story.content} />
-      </main>
-    </>
-  );
-}
 
 export const getStaticProps = async () => {
   const storyblok = new StoryblokClient({
@@ -52,6 +28,16 @@ export const getStaticProps = async () => {
   };
 };
 
+export default function Home({
+  story,
+}: {
+  story: {
+    content: Blok;
+  };
+}) {
+  return <ComponentSwitcher blok={story.content} />;
+}
+
 function ComponentSwitcher({ blok }: { blok: Blok }) {
   let Comp: SBComponent = NA;
 
@@ -66,11 +52,23 @@ function ComponentSwitcher({ blok }: { blok: Blok }) {
 
 const Page: SBComponent = ({ blok }: { blok: Blok }) => {
   return (
-    <div className="page">
-      {blok.body.map((b: Blok, i: number) => (
-        <ComponentSwitcher key={i} blok={b} />
-      ))}
-    </div>
+    <>
+      <header className=" flex justify-between px-8 py-2">
+        <a href="#" className="text-2xl font-bold">
+          Next Pages
+        </a>
+        <a href="#" className=" font-mono">
+          Profile
+        </a>
+      </header>
+      <main>
+        <div className="page">
+          {blok.body.map((b: Blok, i: number) => (
+            <ComponentSwitcher key={i} blok={b} />
+          ))}
+        </div>
+      </main>
+    </>
   );
 };
 
@@ -106,7 +104,7 @@ const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <div className="-grid">
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
         <span>Carousel item : {count}</span>
         <button
@@ -129,7 +127,7 @@ const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
