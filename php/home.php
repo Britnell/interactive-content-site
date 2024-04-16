@@ -79,14 +79,14 @@
             }
             </style>
             <script >
-            document.addEventListener("alpine:init", () => {
-            Alpine.data("carousel", () => ({
-                count: 0,
-                next() {
-                this.count = (this.count + 1) % 3;
-                },
-            }));
-            });
+              document.addEventListener("alpine:init", () => {
+                Alpine.data("carousel", () => ({
+                    count: 0,
+                    next() {
+                    this.count = (this.count + 1) % 3;
+                    },
+                }));
+              });
             </script>
             <div x-data="carousel">
             <div class="px-6 max-w-[1400px] mx-auto mb-8">
