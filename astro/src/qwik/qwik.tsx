@@ -48,7 +48,7 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
 
   return (
     <div class="teaser ">
-      <h1 class=" mt-20 font-bold flex flex-col items-center">
+      <h1 class="h-[min(50vh,800px)] font-bold flex flex-col items-center justify-center">
         <span class=" text-4xl block underline pr-4 mb-4">TEASER</span>
         <div class="flex flex-col items-center">
           <button onClick$={() => (show.value = !show.value)}>

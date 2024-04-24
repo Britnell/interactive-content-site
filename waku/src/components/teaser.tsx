@@ -7,7 +7,7 @@ export const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="teaser  ">
-      <h1 className=" mt-20 font-bold flex flex-col items-center">
+      <h1 className=" h-[min(50vh,800px)] font-bold flex flex-col items-center justify-center">
         <span className=" text-4xl block underline pr-4 mb-4">TEASER</span>
         {show ? (
           <>

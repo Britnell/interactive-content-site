@@ -1,6 +1,6 @@
 import StoryblokClient from "storyblok-js-client";
 import "../styles/globals.css";
-import { Blok, ComponentSwitcher } from "@/storyblok";
+import { Blok, ComponentSwitcher } from "@/components/storyblok";
 
 export const getStaticProps = async () => {
   const storyblok = new StoryblokClient({

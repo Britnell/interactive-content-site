@@ -39,7 +39,7 @@ document.addEventListener("alpine:init", () => {
 </script>
 <div x-data="carousel">
   <div class="px-6 max-w-[1400px] mx-auto mb-8">
-    <span x-text="`Carousel item : ${count}`"></span>
+    Carousel item <span x-text="count"></span>
     <button class="ml-8 bg-white text-black rounded-md px-2 py-1" @click="next">
       Next
     </button>

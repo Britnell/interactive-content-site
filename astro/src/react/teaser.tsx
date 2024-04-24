@@ -2,6 +2,7 @@ import React from "react";
 
 const Teaser = ({ children }: { children: React.ReactNode }) => {
   const [show, setShow] = React.useState(false);
+
   return (
     <>
       {show ? (
