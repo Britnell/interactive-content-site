@@ -1,4 +1,5 @@
 ---
+import { ViewTransitions } from "astro:transitions";
 import { Switcher } from "../qwik/qwik";
 import StoryblokClient from "storyblok-js-client";
 
@@ -21,25 +22,27 @@ if (resp.data.story.content?.body?.[0]?.headline)
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Qwik Demo</title>
-  </head>
-  <style is:global>
-    body {
-      background: black;
-      color: white;
-    }
-    .carousel > * {
-      border: 4px solid transparent;
-    }
-    .red-child-0 > *:nth-child(1) {
-      border-color: red;
-    }
-    .red-child-1 > *:nth-child(2) {
-      border-color: red;
-    }
-    .red-child-2 > *:nth-child(3) {
-      border-color: red;
-    }
-  </style>
+    <ViewTransitions />
+    <style is:global>
+      body {
+        background: black;
+        color: white;
+      }
+      .carousel > * {
+        border: 4px solid transparent;
+      }
+      .red-child-0 > *:nth-child(1) {
+        border-color: red;
+      }
+      .red-child-1 > *:nth-child(2) {
+        border-color: red;
+      }
+      .red-child-2 > *:nth-child(3) {
+        border-color: red;
+      }
+    </style></head
+  >
+
   <body>
     <Switcher blok={resp.data.story.content} />
   </body>
