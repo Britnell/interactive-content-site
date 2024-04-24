@@ -17,7 +17,9 @@ const { blok } = Astro.props;
   >
     <span class="text-4xl block underline pr-4 mb-4">TEASER</span>
     <RTeaser client:idle>
-      <span class="text-xs font-normal leading-none">{blok.headline}</span>
+      <span class="text-xs font-normal leading-none absolute"
+        >{blok.headline}</span
+      >
     </RTeaser>
   </h1>
 </div>

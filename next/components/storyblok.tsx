@@ -51,7 +51,9 @@ export const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
         {show ? (
           <>
             <button onClick={() => setShow(false)}>hide</button>
-            <span className=" text-xs font-normal">{blok.headline}</span>
+            <span className=" text-xs font-normal absolute">
+              {blok.headline}
+            </span>
           </>
         ) : (
           <button onClick={() => setShow(true)}>reveal</button>

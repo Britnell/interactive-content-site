@@ -19,7 +19,7 @@ export const Switcher = component$(({ blok }: { blok: Blok }) => {
 });
 
 const Page = component$(({ blok }: { blok: Blok }) => {
-  console.log(" RENDERING PAGE - I ONLY HAPPEN ON SERVER");
+  console.log(" Rendering Component - I ONLY HAPPEN ON SERVER");
 
   return (
     <>
@@ -55,7 +55,7 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
             {show.value ? "hide" : "reveal"}
           </button>
           <div class={show.value ? "block" : "hidden"}>
-            <span class=" text-xs font-normal leading-none">
+            <span class=" text-xs font-normal leading-none absolute">
               {blok.headline}
             </span>
           </div>
