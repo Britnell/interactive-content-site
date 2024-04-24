@@ -7,12 +7,16 @@ export const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
   const [show, setShow] = useState(false);
   return (
     <div className="teaser  ">
-      <h1 className=" mt-20 font-bold flex flex-col items-center">
+      <h1 className="  h-[min(50vh,800px)] font-bold flex flex-col items-center justify-center">
         <span className=" text-4xl block underline pr-4 mb-4">TEASER</span>
         {show ? (
           <>
             <button onClick={() => setShow(false)}>hide</button>
-            <span className=" text-xs font-normal">{blok.headline}</span>
+            <div>
+              <span className=" text-xs font-normal absolute">
+                {blok.headline}
+              </span>
+            </div>
           </>
         ) : (
           <button onClick={() => setShow(true)}>reveal</button>

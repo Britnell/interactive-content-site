@@ -26,8 +26,8 @@ export const Page: SBComponent = ({ blok }: { blok: Blok }) => {
         <a href="#" className="text-2xl font-bold">
           Next Pages
         </a>
-        <a href="#" className=" font-mono">
-          Profile
+        <a href="/app" className=" font-mono underline">
+          {"->"} App router
         </a>
       </header>
       <main>

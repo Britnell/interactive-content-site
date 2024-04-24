@@ -14,11 +14,21 @@ export function ComponentSwitcher({ blok }: { blok: Blok }) {
   if (blok.component === "page") Comp = Page;
   if (blok.component === "teaser") Comp = Teaser;
   if (blok.component === "feature") Comp = Feature;
-  if (blok.component === "grid") Comp = Grid;
+  if (blok.component === "grid") Comp = GridWrap;
   if (blok.component === "other") Comp = Other;
 
   return <Comp blok={blok} />;
 }
+
+const GridWrap: SBComponent = (props: { blok: Blok }) => {
+  return (
+    <Grid {...props}>
+      {props.blok.columns.map((col: Blok, i: number) => (
+        <ComponentSwitcher blok={col} key={i} />
+      ))}
+    </Grid>
+  );
+};
 
 const Page: SBComponent = ({ blok }: { blok: Blok }) => {
   return (
