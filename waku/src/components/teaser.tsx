@@ -12,7 +12,11 @@ export const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
         {show ? (
           <>
             <button onClick={() => setShow(false)}>hide</button>
-            <span className=" text-xs font-normal">{blok.headline}</span>
+            <div>
+              <span className=" text-xs font-normal absolute">
+                {blok.headline}
+              </span>
+            </div>
           </>
         ) : (
           <button onClick={() => setShow(true)}>reveal</button>

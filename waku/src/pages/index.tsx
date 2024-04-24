@@ -17,17 +17,7 @@ export default async function AppRouter() {
 
   return (
     <>
-      <header className=" flex justify-between px-8 py-2 ">
-        <a href="#" className=" text-white text-2xl font-bold">
-          Next App
-        </a>
-        <a href="#" className=" text-white  font-mono">
-          Profile
-        </a>
-      </header>
-      <main>
-        <ComponentSwitcher blok={story.content} />
-      </main>
+      <ComponentSwitcher blok={story.content} />
     </>
   );
 }

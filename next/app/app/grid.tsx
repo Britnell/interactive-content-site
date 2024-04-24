@@ -5,7 +5,8 @@ const Grid = ({ children }: { children: React.ReactNode }) => {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <section>
+      <h2>Grid</h2>
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
         <span>Carousel item : {count}</span>
         <button
@@ -28,7 +29,7 @@ const Grid = ({ children }: { children: React.ReactNode }) => {
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 };
 export default Grid;

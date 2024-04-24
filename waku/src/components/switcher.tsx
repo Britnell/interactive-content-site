@@ -1,5 +1,5 @@
 import { Teaser } from "./teaser.js";
-import Grid from "./grid.js";
+import { Grid } from "./grid.js";
 
 export type Blok = {
   component: string;
@@ -14,7 +14,7 @@ export function ComponentSwitcher({ blok }: { blok: Blok }) {
   if (blok.component === "page") Comp = Page;
   if (blok.component === "teaser") Comp = Teaser;
   if (blok.component === "feature") Comp = Feature;
-  if (blok.component === "grid") Comp = Grid;
+  if (blok.component === "grid") Comp = GridWrap;
   if (blok.component === "other") Comp = Other;
 
   return <Comp blok={blok} />;
@@ -22,11 +22,33 @@ export function ComponentSwitcher({ blok }: { blok: Blok }) {
 
 const Page: SBComponent = ({ blok }: { blok: Blok }) => {
   return (
-    <div className="page">
-      {blok.body.map((b: Blok, i: number) => (
-        <ComponentSwitcher key={i} blok={b} />
+    <>
+      <header className=" flex justify-between px-8 py-2 ">
+        <a href="#" className=" text-white text-2xl font-bold">
+          Waku App
+        </a>
+        <a href="#" className=" text-white  font-mono">
+          Profile
+        </a>
+      </header>
+      <main>
+        <div className="page">
+          {blok.body.map((b: Blok, i: number) => (
+            <ComponentSwitcher key={i} blok={b} />
+          ))}
+        </div>
+      </main>
+    </>
+  );
+};
+
+const GridWrap: SBComponent = (props: { blok: Blok }) => {
+  return (
+    <Grid {...props}>
+      {props.blok.columns.map((col: Blok, i: number) => (
+        <ComponentSwitcher blok={col} key={i} />
       ))}
-    </div>
+    </Grid>
   );
 };
 

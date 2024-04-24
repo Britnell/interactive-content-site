@@ -56,6 +56,7 @@ const NA: SBComponent = ({ blok }) => {
 const Other: SBComponent = () => {
   return (
     <div className="other">
+      <h2>UNNECESSARY</h2>
       <p>
         Other component that is also bundled even though it is not used, because
         the page doesnt know which components will be needed

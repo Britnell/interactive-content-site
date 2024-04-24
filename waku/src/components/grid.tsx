@@ -1,13 +1,12 @@
 "use client";
+import { Children, useState } from "react";
 
-import { useState } from "react";
-import { SBComponent, Blok, ComponentSwitcher } from "./switcher";
-
-const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
+export const Grid = ({ children }: { children: React.ReactNode }) => {
   const [count, setCount] = useState(0);
 
   return (
-    <>
+    <section>
+      <h2>Grid</h2>
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
         <span>Carousel item : {count}</span>
         <button
@@ -17,8 +16,8 @@ const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
           Next
         </button>
       </div>
-      <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto ">
-        {blok.columns.map((col: Blok, i: number) => (
+      <div className="px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto">
+        {Children.map(children, (child, i) => (
           <div
             key={i}
             className={
@@ -26,11 +25,10 @@ const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
               (count === i ? " border-red-500 " : " border-transparent")
             }
           >
-            <ComponentSwitcher blok={col} />
+            {child}
           </div>
         ))}
       </div>
-    </>
+    </section>
   );
 };
-export default Grid;
