@@ -31,12 +31,11 @@ const { blok } = Astro.props;
 </section>
 
 <script is:inline>
-// window.onload
 let count = 0;
 
 window.nextbutton.onclick = () => {
-    count = (count + 1) % 3;
-    const el = window.carouselref.children[count];
-    console.log(` Next => ${count} `, el);
+  count = (count + 1) % 3;
+  const el = window.carouselref.children[count];
+  console.log(` Next => ${count} `, el);
 };
 </script>
