@@ -10,6 +10,7 @@ export type SBComponent = (props: { blok: Blok }) => JSX.Element;
 export function ComponentSwitcher({ blok }: { blok: Blok }) {
   let Comp: SBComponent = NA;
 
+  if (blok.component === "text") Comp = Text;
   if (blok.component === "page") Comp = Page;
   if (blok.component === "teaser") Comp = Teaser;
   if (blok.component === "feature") Comp = Feature;
@@ -40,6 +41,21 @@ export const Page: SBComponent = ({ blok }: { blok: Blok }) => {
     </>
   );
 };
+
+
+export const Text: SBComponent = ({ blok }: { blok: Blok }) => {
+  return (
+    <>
+      {blok.text.content.map((bl:any)=>{
+        // Richtext renderin
+        if(bl.type==='paragraph')
+          return (<p>{bl.text}</p>)
+        
+        return <div>{bl.text}</div>
+      })}
+    </>
+  )
+}
 
 export const Teaser: SBComponent = ({ blok }: { blok: Blok }) => {
   const [show, setShow] = useState(false);
@@ -77,6 +93,13 @@ export const Feature: SBComponent = ({ blok }: { blok: Blok }) => {
 export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
   const [count, setCount] = useState(0);
 
+  const adjustmentForProductGrid = (blok:Blok)=>{
+    // additional functionality as we are reusing this grid component for many different grids and it needs to do loads of different things
+    return  blok?.grid?.type.columns
+  }
+
+  const cols = adjustmentForProductGrid(blok)
+
   return (
     <div className="gridcomp ">
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
@@ -88,7 +111,7 @@ export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
           Next
         </button>
       </div>
-      <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto ">
+      <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto " style={{columns: `${cols}`}}>
         {blok.columns.map((col: Blok, i: number) => (
           <div
             key={i}
@@ -112,6 +135,7 @@ export const NA: SBComponent = ({ blok }) => {
 export const Other: SBComponent = () => {
   return (
     <div className="other">
+      <p>Blabla</p>
       <p>
         Other component that is also bundled even though it is not used, because
         the page doesnt know which components will be needed

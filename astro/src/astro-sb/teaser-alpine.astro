@@ -24,3 +24,29 @@ const { blok } = Astro.props;
     </div>
   </h1>
 </div>
+
+<div>
+  <h3>Plus a little show off:</h3>
+  <div
+    x-data="{pets: 'cats,camels,dogs,donkeys,cars,budgies,caravans,cangaroos,chinchillas'.split(','), filter: '' }"
+  >
+    <label>
+      Filter
+      <input
+        x-model="filter"
+        :value="filter"
+        class="bg-black border border-white p-1"
+        placeholder="search for"
+      />
+    </label>
+    <h2>list of things :</h2>
+    <ul class="list-disc ml-6">
+      <template x-for="pet in pets.filter(st=>st.includes(filter))">
+        <li x-text="pet"></li>
+      </template>
+      <template x-if="pets.filter(st=>st.includes(filter)).length===0">
+        <li>nothing starting with <span x-text="filter"></span></li>
+      </template>
+    </ul>
+  </div>
+</div>

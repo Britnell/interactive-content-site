@@ -86,12 +86,14 @@ const Grid = component$(({ blok }: { blok: Blok }) => {
       <div
         class={` px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto carousel red-child-${count.value} `}
       >
-        {/* re-render boundary is here, we have to use classes on the parent, instead of dynamically applying styles to the array of children (as this requires the component jsx code) */}
+        {/* re-render boundary is here, we have to use classes on the PARENT
+          instead of dynamically applying styles to the array of CHILDREN
+          (as this requires the component jsx code) */}
         {blok.columns.map((col: Blok, i: number) => (
           <div
             class={
               " border-4 rounded-xl border-transparent "
-              // +(count.value === i ? "x" : "o")
+              // +(count.value === i ? " show " : " hidden") // this would require comp jsx to be loaded
             }
           >
             <Switcher blok={col} />
