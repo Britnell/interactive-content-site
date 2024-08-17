@@ -28,7 +28,6 @@ export default function Homepage({
     content: Blok;
   };
 }) {
-  // console.log(story);
   
   return <ComponentSwitcher blok={story.content} />;
 }
