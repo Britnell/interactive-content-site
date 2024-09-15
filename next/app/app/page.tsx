@@ -14,9 +14,7 @@ export default async function AppRouter() {
           {"->"} Page router
         </a>
       </header>
-      <main>
-        <ComponentSwitcher blok={story} />
-      </main>
+      <ComponentSwitcher blok={story} />
     </>
   );
 }

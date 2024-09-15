@@ -21,8 +21,8 @@ const Grid = ({ children }: { children: React.ReactNode }) => {
           <div
             key={i}
             className={
-              " border-4 rounded-xl " +
-              (count === i ? " border-red-500 " : " border-transparent")
+              " outline outline-4 outline-offset-4 rounded-xl " +
+              (count === i ? "outline-red-500 " : "  outline-transparent ")
             }
           >
             {child}

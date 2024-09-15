@@ -13,6 +13,7 @@ export default function Homepage({
   story,
 }: {
   story: {
+    component:string;
     content: Blok;
   };
 }) {

@@ -32,12 +32,10 @@ export const Page: SBComponent = ({ blok }: { blok: Blok }) => {
           {"->"} App router
         </a>
       </header>
-      <main>
-        <div className="page">
-          {blok.body.map((b: Blok, i: number) => (
-            <ComponentSwitcher key={i} blok={b} />
-          ))}
-        </div>
+      <main className="page flex flex-col gap-4">
+        {blok.body.map((b: Blok, i: number) => (
+          <ComponentSwitcher key={i} blok={b} />
+        ))}
       </main>
     </>
   );
@@ -51,7 +49,7 @@ export const Text: SBComponent = ({ blok }: { blok: Blok }) => {
       <h2>Heading</h2>
       {blok.text.content.map((bl:any,i:number)=>(
         <div key={i}>
-          {bl.content.map((text,t)=>(
+          {bl.content.map((text: { text:string },t:number)=>(
             <p key={t}>{text.text}</p>
           ))}
         </div>
@@ -96,16 +94,20 @@ export const Feature: SBComponent = ({ blok }: { blok: Blok }) => {
 export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
   const [count, setCount] = useState(0);
 
-  const adjustmentForProductGrid = (blok:Blok)=>{
+  const adjustmentForProductGrid = (_:Blok)=>{
     // additional functionality as we are reusing this grid component for many different grids and it needs to do loads of different things
-    return  blok?.grid?.type.columns
+    const variable = {
+      reason: 'unused code here',
+      x: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus error eum, nisi accusantium sequi, impedit molestiae doloremque ipsam placeat, magni facere. Voluptate facere a earum eligendi, tempora magnam reiciendis natus!',
+    }
+    return  variable.x
   }
 
   const cols = adjustmentForProductGrid(blok)
 
   return (
     <section className="gridcomp ">
-      <h2>Grid</h2>
+      {cols && <h2>Grid</h2>}
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
         <span>Carousel item : {count}</span>
         <button
@@ -115,13 +117,13 @@ export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
           Next
         </button>
       </div>
-      <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto " style={{columns: `${cols}`}}>
+      <div className=" px-6 grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6 max-w-[1400px] mx-auto " >
         {blok.columns.map((col: Blok, i: number) => (
           <div
-            key={i}
+            key={i + cols}
             className={
-              " border-4 rounded-xl " +
-              (count === i ? " border-red-500 " : " border-transparent")
+              " outline outline-4 outline-offset-4 rounded-xl " +
+              (count === i ? "outline-red-500 " : "  outline-transparent ")
             }
           >
             <ComponentSwitcher blok={col} />

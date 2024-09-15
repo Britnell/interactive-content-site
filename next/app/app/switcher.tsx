@@ -29,7 +29,7 @@ export const Text: SBComponent = ({ blok }: { blok: Blok }) => {
       <h2>Heading</h2>
       {blok.text.content.map((bl:any,i:number)=>(
         <div key={i}>
-          {bl.content.map((text,t)=>(
+          {bl.content.map((text: {text:string},t:number)=>(
             <p key={t}>{text.text}</p>
           ))}
         </div>
@@ -50,11 +50,11 @@ const GridWrap: SBComponent = (props: { blok: Blok }) => {
 
 const Page: SBComponent = ({ blok }: { blok: Blok }) => {
   return (
-    <div className="page">
+    <main className="page flex flex-col gap-4">
       {blok.body.map((b: Blok, i: number) => (
         <ComponentSwitcher key={i} blok={b} />
       ))}
-    </div>
+    </main>
   );
 };
 
