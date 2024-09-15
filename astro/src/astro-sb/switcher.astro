@@ -1,12 +1,13 @@
 ---
-import Page from "./page.astro";
-import Grid from "./grid.astro";
-import GridAlpine from "./grid-alpine.astro";
-import Teaser from "./teaser.astro";
-import TeaserAlpine from "./teaser-alpine.astro";
-import Feature from "../react/feature"; // Feature React
+import Page from './page.astro';
+import Grid from './grid.astro';
+import GridAlpine from './grid-alpine.astro';
+import Teaser from './teaser.astro';
+import TeaserAlpine from './teaser-alpine.astro';
+import Feature from '../react/feature'; // Feature React
 // import Feature from "./feature.astro"; // Feature astro
-import NA from "./na.astro";
+import NA from './na.astro';
+import Text from './text.astro';
 
 interface Props {
   blok: {
@@ -19,12 +20,13 @@ const { blok } = Astro.props;
 
 let Comp = NA;
 
-if (blok.component === "page") Comp = Page;
-if (blok.component === "grid") Comp = Grid;
-if (blok.component === "grid-alpine") Comp = GridAlpine;
-if (blok.component === "teaser") Comp = Teaser;
-if (blok.component === "teaser-alpine") Comp = TeaserAlpine;
-if (blok.component === "feature") Comp = Feature;
+if (blok.component === 'page') Comp = Page;
+if (blok.component === 'grid') Comp = Grid;
+if (blok.component === 'text') Comp = Text;
+if (blok.component === 'grid-alpine') Comp = GridAlpine;
+if (blok.component === 'teaser') Comp = Teaser;
+if (blok.component === 'teaser-alpine') Comp = TeaserAlpine;
+if (blok.component === 'feature') Comp = Feature;
 ---
 
 <Comp blok={blok} />

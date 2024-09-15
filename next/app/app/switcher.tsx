@@ -13,11 +13,29 @@ export function ComponentSwitcher({ blok }: { blok: Blok }) {
 
   if (blok.component === "page") Comp = Page;
   if (blok.component === "teaser") Comp = Teaser;
+  if (blok.component === "text") Comp = Text;
   if (blok.component === "feature") Comp = Feature;
   if (blok.component === "grid") Comp = GridWrap;
   if (blok.component === "other") Comp = Other;
 
   return <Comp blok={blok} />;
+}
+
+
+export const Text: SBComponent = ({ blok }: { blok: Blok }) => {
+  
+  return (
+    <>
+      <h2>Heading</h2>
+      {blok.text.content.map((bl:any,i:number)=>(
+        <div key={i}>
+          {bl.content.map((text,t)=>(
+            <p key={t}>{text.text}</p>
+          ))}
+        </div>
+      ))}
+    </>
+  )
 }
 
 const GridWrap: SBComponent = (props: { blok: Blok }) => {
@@ -56,7 +74,7 @@ const NA: SBComponent = ({ blok }) => {
 const Other: SBComponent = () => {
   return (
     <div className="other">
-      <h2>UNNECESSARY</h2>
+      <h2>Blabla</h2>
       <p>
         Other component that is also bundled even though it is not used, because
         the page doesnt know which components will be needed

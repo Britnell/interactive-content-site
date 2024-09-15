@@ -1,0 +1,25 @@
+---
+import RTeaser from '../react/teaser';
+
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<section>
+  <h2>Heading</h2>
+  {
+    blok.text.content.map((bl: any, i: number) => (
+      <div>
+        {bl.content.map((text: any) => (
+          <p>{text.text}</p>
+        ))}
+      </div>
+    ))
+  }
+</section>

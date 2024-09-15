@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 
 export type Blok = {
   component: string;
@@ -21,6 +21,7 @@ export function ComponentSwitcher({ blok }: { blok: Blok }) {
 }
 
 export const Page: SBComponent = ({ blok }: { blok: Blok }) => {
+
   return (
     <>
       <header className=" flex justify-between px-8 py-2">
@@ -44,15 +45,17 @@ export const Page: SBComponent = ({ blok }: { blok: Blok }) => {
 
 
 export const Text: SBComponent = ({ blok }: { blok: Blok }) => {
+  
   return (
     <>
-      {blok.text.content.map((bl:any)=>{
-        // Richtext renderin
-        if(bl.type==='paragraph')
-          return (<p>{bl.text}</p>)
-        
-        return <div>{bl.text}</div>
-      })}
+      <h2>Heading</h2>
+      {blok.text.content.map((bl:any,i:number)=>(
+        <div key={i}>
+          {bl.content.map((text,t)=>(
+            <p key={t}>{text.text}</p>
+          ))}
+        </div>
+      ))}
     </>
   )
 }
@@ -101,7 +104,8 @@ export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
   const cols = adjustmentForProductGrid(blok)
 
   return (
-    <div className="gridcomp ">
+    <section className="gridcomp ">
+      <h2>Grid</h2>
       <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
         <span>Carousel item : {count}</span>
         <button
@@ -124,7 +128,7 @@ export const Grid: SBComponent = ({ blok }: { blok: Blok }) => {
           </div>
         ))}
       </div>
-    </div>
+    </section>
   );
 };
 

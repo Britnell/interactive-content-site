@@ -1,26 +1,7 @@
 ---
-import { ViewTransitions } from "astro:transitions";
-import Switcher from "../astro-sb/switcher.astro";
-import StoryblokClient from "storyblok-js-client";
-
-const storyblok = new StoryblokClient({
-  accessToken: "W1vLyxT5rQ15jBpANjnv0gtt",
-});
-
-const resp = await storyblok.get("cdn/stories/home", {
-  version: "draft",
-});
-
-if (resp.data.story.content?.body?.[0]?.headline)
-  resp.data.story.content.body[0].headline =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? ";
-
-const st = resp.data.story.content;
-st.body = st.body.map((bl: any) => {
-  if (bl.component === "teaser") bl.component = "teaser-alpine";
-  if (bl.component === "grid") bl.component = "grid-alpine";
-  return bl;
-});
+import { ViewTransitions } from 'astro:transitions';
+import Switcher from '../astro-sb/switcher.astro';
+import page from '../page.json';
 ---
 
 <!doctype html>
@@ -30,10 +11,7 @@ st.body = st.body.map((bl: any) => {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alpine Demo</title>
     <ViewTransitions />
-    <script
-      defer
-      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
-    ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
   </head>
   <style is:global>
     body {
@@ -47,8 +25,10 @@ st.body = st.body.map((bl: any) => {
       <a href="#" class="font-mono"> Profile</a>
     </header>
     <main>
-      <Switcher blok={resp.data.story.content} />
-      <p>This is the alpine demo (w Astro components)</p>
+      <Switcher blok={page} />
     </main>
+    <footer>
+      <p>This is the alpine demo (w Astro components)</p>
+    </footer>
   </body>
 </html>
