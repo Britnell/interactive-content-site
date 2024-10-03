@@ -1,6 +1,6 @@
 /** @jsxImportSource @builder.io/qwik */
 
-import { component$, useSignal } from "@builder.io/qwik";
+import { $, component$, useSignal } from "@builder.io/qwik";
 
 type Blok = {
   component: string;
@@ -47,21 +47,28 @@ const Teaser = component$(({ blok }: { blok: Blok }) => {
   const show = useSignal(false);
 
   return (
-    <div class="teaser ">
-      <h1 class="h-[min(50vh,800px)] font-bold flex flex-col items-center justify-center">
-        <span class=" text-4xl block underline pr-4 mb-4">TEASER</span>
-        <div class="flex flex-col items-center">
-          <button onClick$={() => (show.value = !show.value)}>
-            {show.value ? "hide" : "reveal"}
+    <div class="teaser">
+        <div 
+          class="h-[min(50vh,800px)] font-bold flex flex-col items-center justify-center"
+        >
+          <h1 class="text-4xl block underline pr-4 mb-4">TEASER</h1>
+          <button onClick$={() =>(show.value = !show.value)}>
+            {show.value ? 'hide' : 'reveal'}
           </button>
-          <div class={show.value ? "block" : "hidden"}>
-            <span class=" text-xs font-normal leading-none absolute">
-              {blok.headline}
-            </span>
-          </div>
+          <div class="relative">
+              <div class={" absolute p-2 w-[400px] border border-white transition-all  "+ (
+                show.value ? ' translate-x-0 opacity-100 ':' translate-x-5 opacity-0 invisible'
+              )}>
+                <h3>Pop!</h3>
+                <span class="text-xs font-normal leading-none " >
+                  {blok.headline}
+                </span>
+              </div>
+            </div>
         </div>
-      </h1>
-    </div>
+
+      </div>
+
   );
 });
 
@@ -71,44 +78,61 @@ const NA = component$(({ blok }: { blok: Blok }) => {
 
 const Grid = component$(({ blok }: { blok: Blok }) => {
   const count = useSignal(0);
+  const ref = useSignal<Element>()
 
+  const next = $(() => {
+    count.value = (count.value + 1) % 3
+    const children = ref.value?.firstElementChild?.children;
+    if (!children) return;
+    Array.from(children).forEach((el, i) => {
+      const activeClass = 'scale-110'
+      if (i === count.value) {
+        el.scrollIntoView({
+          inline: 'center',
+          behavior: 'smooth'
+        })
+        el.classList.add(activeClass)
+      } else {
+        el.classList.remove(activeClass)
+      }
+    });
+  }
+)
   return (
     <>
-      <div class=" px-6 max-w-[1400px] mx-auto mb-8 ">
-        <span>Carousel item : {count.value}</span>
+    <div class=" px-6 max-w-[1400px] mx-auto mb-8  ">
+        <span>Carousel item : {count}</span>
         <button
           class=" ml-8 bg-white text-black rounded-md px-2 py-1"
-          onClick$={() => (count.value = (count.value + 1) % 3)}
+          onClick$={next}
         >
           Next
         </button>
       </div>
       <div
-        class={` px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto carousel red-child-${count.value} `}
+        class=" flex gap-14 px-10 py-8 overflow-x-auto snap-x snap-mandatory scroll-p-20"
+        ref={ref}
       >
-        {/* re-render boundary is here, we have to use classes on the PARENT
-          instead of dynamically applying styles to the array of CHILDREN
-          (as this requires the component jsx code) */}
-        {blok.columns.map((col: Blok, i: number) => (
-          <div
-            class={
-              " border-4 rounded-xl border-transparent "
-              // +(count.value === i ? " show " : " hidden") // this would require comp jsx to be loaded
-            }
-          >
-            <Switcher blok={col} />
-          </div>
-        ))}
+        <div style={{ display: 'contents'}}>
+         {blok.columns.map((col: Blok, i: number) => (
+            <div class=" flex-[0_0_80%] snap-center transition-all duration-100 ">
+              <Switcher blok={col} />
+            </div>
+          ))}
+        </div>
       </div>
+
     </>
   );
 });
 
 const Feature = component$(({ blok }: { blok: Blok }) => {
   return (
-    <div class="feature rounded-xl bg-white text-black p-6">
-      <h2 class=" text-2xl font-bold mb-2">Feature</h2>
-      <p class=" italic">{blok.name}</p>
+    <div >
+        <div class="rounded-xl bg-white feature  text-black p-6 ">
+          <h2 class="text-2xl font-bold mb-2">Feature</h2>
+          <p class="italic">{blok.name}</p>
+        </div>
     </div>
   );
 });

@@ -1,6 +1,6 @@
-import React, { type FC } from "react";
+import React from "react";
 
-const Feature : FC<{blok:any}> = ({ blok })=> {
+const Feature : React.FC<{blok:any}> = ({ blok })=> {
   return (
     <div >
         <div className="rounded-xl bg-white feature  text-black p-6 ">

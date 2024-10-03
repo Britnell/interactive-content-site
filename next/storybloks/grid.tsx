@@ -2,7 +2,7 @@
 
 import React, { type FC } from "react";
 
-const Teaser: FC<{ children: React.ReactNode }> = ({ children }) => {
+const Grid: FC<{ children: React.ReactNode }> = ({ children }) => {
   const [count, setCount] = React.useState(0);
   const ref = React.useRef<HTMLDivElement>(null);
 
@@ -44,4 +44,4 @@ const Teaser: FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
-export default Teaser;
+export default Grid;
