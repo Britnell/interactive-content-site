@@ -1,6 +1,6 @@
 import "../styles/globals.css";
-import { Blok, ComponentSwitcher } from "@/components/storyblok";
-import page from '@/components/page.json'
+import { Blok, ComponentSwitcher } from "@/storyblok";
+import page from '@/page.json'
 
 export const getStaticProps = async () => {
   

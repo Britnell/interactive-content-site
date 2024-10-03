@@ -1,19 +1,7 @@
 ---
-import { ViewTransitions } from "astro:transitions";
 import { Switcher } from "../qwik/qwik";
-import StoryblokClient from "storyblok-js-client";
-
-const storyblok = new StoryblokClient({
-  accessToken: "W1vLyxT5rQ15jBpANjnv0gtt",
-});
-
-const resp = await storyblok.get("cdn/stories/home", {
-  version: "draft",
-});
-
-if (resp.data.story.content?.body?.[0]?.headline)
-  resp.data.story.content.body[0].headline =
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur!Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas blanditiis unde fugiat, mollitia repellendus incidunt nostrum. Magnam, eius, sint est voluptatum non ab quas sapiente hic nam itaque, labore aspernatur! Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, nobis nam reprehenderit excepturi nihil dolore maxime perspiciatis delectus nulla incidunt laudantium rem numquam fugit facere deserunt quas totam id quaerat? ";
+import { ViewTransitions } from "astro:transitions";
+import page from "../page.json";
 ---
 
 <!doctype html>
@@ -44,6 +32,6 @@ if (resp.data.story.content?.body?.[0]?.headline)
   >
 
   <body>
-    <Switcher blok={resp.data.story.content} />
+    <Switcher blok={page} />
   </body>
 </html>

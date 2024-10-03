@@ -1,7 +1,11 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import Switcher from '../astro-sb/switcher.astro';
-import page from '../page.json';
+import { ViewTransitions } from "astro:transitions";
+import Switcher from "../storyblok/switcher.astro";
+import page from "../page.json";
+
+const pageData = structuredClone(page);
+pageData.body[1].component = "teaser-alpine";
+pageData.body[3].component = "grid-alpine";
 ---
 
 <!doctype html>
@@ -11,7 +15,10 @@ import page from '../page.json';
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Alpine Demo</title>
     <ViewTransitions />
-    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"
+    ></script>
   </head>
   <style is:global>
     body {
@@ -25,7 +32,7 @@ import page from '../page.json';
       <a href="#" class="font-mono"> Profile</a>
     </header>
     <main>
-      <Switcher blok={page} />
+      <Switcher blok={pageData} />
     </main>
     <footer>
       <p>This is the alpine demo (w Astro components)</p>

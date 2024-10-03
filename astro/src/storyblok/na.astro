@@ -1,0 +1,21 @@
+---
+import NaComp from "../react/NA";
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
+
+type Blok = {
+  component: string;
+  [field: string]: any;
+};
+interface Props {
+  blok: Blok;
+}
+
+const { blok } = Astro.props;
+---
+
+<NaComp blok={blok} />

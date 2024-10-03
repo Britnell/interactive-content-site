@@ -1,5 +1,5 @@
 ---
-// import Switcher from "./switcher.astro";
+import TeaserComp from "../react/teaser";
 
 interface Props {
   blok: {
@@ -11,6 +11,4 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div>
-  <p class="font-mono">Component {blok.component} not found</p>
-</div>
+<TeaserComp blok={blok} client:visible />

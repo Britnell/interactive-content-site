@@ -1,5 +1,5 @@
 import { ComponentSwitcher } from "./switcher";
-import page from '@/components/page.json'
+import page from '@/page.json'
 
 export default async function AppRouter() {
   const story = page

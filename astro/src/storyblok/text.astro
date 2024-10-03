@@ -1,0 +1,14 @@
+---
+import TextComp from "../react/text";
+
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
+
+const { blok } = Astro.props;
+---
+
+<TextComp blok={blok} />

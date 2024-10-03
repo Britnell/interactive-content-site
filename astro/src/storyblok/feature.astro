@@ -1,5 +1,6 @@
 ---
 // import Switcher from "./switcher.astro";
+import FeatureComp from "../react/feature";
 
 interface Props {
   blok: {
@@ -11,7 +12,4 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div class="feature rounded-xl bg-white text-black p-6 border-4">
-  <h2 class="text-2xl font-bold mb-2">Feature</h2>
-  <p class="italic">{blok.name}</p>
-</div>
+<FeatureComp blok={blok.name} />

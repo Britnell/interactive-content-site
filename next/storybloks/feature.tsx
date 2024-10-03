@@ -1,4 +1,4 @@
-import type { FC } from "react";
+import React, { type FC } from "react";
 
 const Feature : FC<{blok:any}> = ({ blok })=> {
   return (

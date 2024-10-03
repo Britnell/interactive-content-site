@@ -1,7 +1,7 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import Switcher from '../astro-sb/switcher.astro';
-import page from '../page.json';
+import { ViewTransitions } from "astro:transitions";
+import Switcher from "../storyblok/switcher.astro";
+import page from "../page.json";
 ---
 
 <!doctype html>
@@ -19,15 +19,6 @@ import page from '../page.json';
     </style>
   </head>
   <body>
-    <header class="flex justify-between px-8 py-2">
-      <a href="/" class="text-2xl font-bold"> Astro Demo</a>
-      <a href="#" class="font-mono"> Profile</a>
-    </header>
-    <main>
-      <Switcher blok={page} />
-    </main>
-    <footer>
-      <p>This is using Astro components w React islands</p>
-    </footer>
+    <Switcher blok={page} />
   </body>
 </html>

@@ -1,5 +1,13 @@
 ---
-import Switcher from "../astro-sb/switcher.astro";
+import Switcher from "./switcher.astro";
+import PageComp from "../react/page";
+
+interface Props {
+  blok: {
+    component: string;
+    [field: string]: any;
+  };
+}
 
 type Blok = {
   component: string;
@@ -12,6 +20,6 @@ interface Props {
 const { blok } = Astro.props;
 ---
 
-<div class="page">
+<PageComp>
   {blok.body.map((bl: Blok) => <Switcher blok={bl} />)}
-</div>
+</PageComp>
