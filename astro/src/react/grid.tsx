@@ -12,18 +12,20 @@ const Teaser: FC<{ children: React.ReactNode }> = ({ children }) => {
     if (!children) return;
     Array.from(children).forEach((el, i) => {
       if (i === count) {
-        el.classList.add("border-red-600");
-        el.classList.remove("border-transparent");
+        el.scrollIntoView({
+          inline: 'center',
+          behavior: 'smooth'
+        })
+        el.className = 'flex-[0_0_80%] snap-center transition-all duration-100 scale-105 shadow-xl '
       } else {
-        el.classList.remove("border-red-600");
-        el.classList.add("border-transparent");
+        el.className = 'flex-[0_0_80%] snap-center transition-all duration-100 scale-95'
       }
     });
   }, [count]);
 
   return (
     <>
-      <div className=" px-6 max-w-[1400px] mx-auto mb-8 ">
+      <div className=" px-6 max-w-[1400px] mx-auto mb-8  ">
         <span>Carousel item : {count}</span>
         <button
           className=" ml-8 bg-white text-black rounded-md px-2 py-1"
@@ -33,7 +35,7 @@ const Teaser: FC<{ children: React.ReactNode }> = ({ children }) => {
         </button>
       </div>
       <div
-        className="px-6 grid grid-cols-[repeat(auto-fit,minmax(400px,1fr))] gap-6 max-w-[1400px] mx-auto"
+        className=" flex gap-10 px-10 py-8 overflow-x-auto snap-x snap-mandatory scroll-p-20"
         ref={ref}
       >
         {children}

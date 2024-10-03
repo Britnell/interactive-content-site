@@ -1,6 +1,6 @@
 import React from "react";
 
-const Teaser : React.FC<{blok:any}> = ({ blok }) => {
+const Teaser: React.FC<{blok:any}> = ({ blok }) => {
   const [show, setShow] = React.useState(false);
 
   return (
