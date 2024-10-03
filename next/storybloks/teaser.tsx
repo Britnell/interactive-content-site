@@ -1,3 +1,5 @@
+'use client'
+
 import React from "react";
 
 const Teaser: React.FC<{blok:any}> = ({ blok }) => {

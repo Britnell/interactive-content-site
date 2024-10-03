@@ -1,4 +1,4 @@
-import { ComponentSwitcher } from "./switcher";
+import { ComponentSwitcher } from "../../storyblok";
 import page from '@/page.json'
 
 export default async function AppRouter() {
